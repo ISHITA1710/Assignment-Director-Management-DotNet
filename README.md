@@ -1,9 +1,5 @@
 # 📂 Directory Management System
 
----
-
-## 🚀 How to Run the Project Locally
-
 ### 📌 Clone the repository:
 ```sh
 git clone https://github.com/YOUR_GITHUB_USERNAME/Directory-Management.git
@@ -27,4 +23,4 @@ cd Directory-Management
 ---
 
 ## 🎥 Demo Video
-[![Watch the demo](https://img.youtube.com/vi/t1dbD5hOzJo/0.jpg)](https://www.youtube.com/watch?v=t1dbD5hOzJo)
+[![Watch the demo](https://www.youtube.com/watch?v=t1dbD5hOzJo)
