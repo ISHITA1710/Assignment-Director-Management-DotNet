@@ -8,12 +8,14 @@
 ```sh
 git clone https://github.com/YOUR_GITHUB_USERNAME/Directory-Management.git
 cd Directory-Management
+```
 
 ## Backend Setup:
 ```sh
 1. Open the .sln file in Visual Studio.
 2. Restore NuGet packages.
 3. Run the API using IIS Express.
+```
 
 ## Frontend Setup:
 ```sh
