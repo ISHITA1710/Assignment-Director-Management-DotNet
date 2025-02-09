@@ -23,4 +23,4 @@ cd Directory-Management
 ---
 
 ## 🎥 Demo Video
-![Watch the demo](https://www.youtube.com/watch?v=t1dbD5hOzJo)
+[Watch the demo](https://www.youtube.com/watch?v=t1dbD5hOzJo)
