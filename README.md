@@ -1,126 +1,95 @@
-Directory Management System
+# Directory Management System
 
-Overview
+You are tasked with building a **Directory Management System** for local businesses using **.NET Core (Backend API)** and **Angular/ReactJS (Frontend)**. The system will allow users to manage business listings, search for businesses, and view paginated results. Additionally, the system should focus on providing a user-friendly experience through well-designed interfaces for **CRUD operations** and **search functionalities**.
 
-This project is a Directory Management System built using .NET Core for the backend and Angular/ReactJS for the frontend. The system enables users to manage business listings, perform search operations, and view paginated results with a user-friendly interface.
+---
 
-Features
+## 📌 Submission Process
 
-1. Business Listing Management (CRUD Operations) - 40%
+To ensure a streamlined and professional submission of your project, please follow the steps below:
 
-Create: Add new business listings with fields such as Name, Category, Address, City, State, Zip Code, Phone Number, Website, and Rating.
+1. **Set up a public GitHub repository** for your project.
+2. **Structure the repository folders** in a neat manner.
+3. **Include a `README.md` file** at the root of your repository that includes:
+   - Any extra steps/configurations to run your project locally.
+   - Unique solutions or optimizations you implemented.
+   - Libraries or techniques used for enhancing performance or user experience.
+   - Challenges faced and how you resolved them.
+4. **Exclude the `node_modules` folder** while pushing code to GitHub.
+5. **Submit the repository link**.
 
-Read: Display all business listings in a table with sorting by Business Name.
+---
 
-Update: Edit business details through a modal form.
+## 📌 Project Requirements
 
-Delete: Remove a business listing with a confirmation prompt.
+### 1️⃣ Business Listing Management (CRUD Operations) - **40%**
+Admins should be able to manage business listings with the following features:
 
-2. Search Functionality - 20%
+#### ✅ Create a Business Listing
+- A button labeled **“Add New Business”** should open a modal/popup form with the following fields:
+  - **Business Name** (Required)
+  - **Category** (Dropdown with predefined categories from the `Categories` table)
+  - **Street Address** (Multi-line text area)
+  - **City**
+  - **State**
+  - **Zip Code**
+  - **Phone Number** (Required, validated for Indian phone number format)
+  - **Website** (Optional, validated for URL format)
+  - **Rating**
+- **Save button** to submit the form.
+- **Validation messages** for incorrect inputs.
 
-Implemented a keyword-based search that filters results based on Business Name and City.
+#### ✅ Read (View) Business Listings
+- Display business listings in a **table** with columns:
+  - Name | Category | Street Address | State/Zip | Contact Number | Website | Rating
+- Include action buttons for **Edit** and **Delete**.
+- Default sorting by **Business Name**.
 
-3. Pagination - 20%
+#### ✅ Update a Business Listing
+- Clicking **Edit** opens a **popup/modal form** prepopulated with details.
+- The admin can update any field and **click Save Changes**.
+- Show a **success message** or validation errors.
 
-Displays 10 records per page with Next/Previous navigation.
+#### ✅ Delete a Business Listing
+- Clicking **Delete** opens a **confirmation dialog**.
+- If confirmed, **delete the record** and remove it from the table.
+- Show a **toast/success message**: *“Business deleted successfully.”*
 
-Displays total records and current page information.
+---
 
-4. Bonus Features - 10%
+### 2️⃣ Search Functionality - **20%**
+- Implement a **search bar** that searches in:
+  - **Business Name**
+  - **City**
 
-Customizable number of records per page.
+---
 
-Fully responsive UI.
+### 3️⃣ Pagination - **20%**
+- **Show 10 records per page** by default.
+- **Pagination controls** at the bottom:
+  - Previous | Next | Page Numbers
+- Display total records and current page info:
+  - *“Showing 1-10 of 25 records”*
 
-Error handling with toast messages.
+---
 
-Sorting on Business Name and City with toggling between ascending and descending order.
+### 4️⃣ Bonus Features - **10%**
+- **Customizable records per page.**
+- **Fully responsive UI** for all screen sizes.
+- **Error handling** with toast notifications.
+- **Sorting functionality**:
+  - Click column headers to sort **Business Name** and **City**.
+  - Toggle sorting between **ascending/descending**.
+  - Visual indicator (e.g., **↑ / ↓** icons).
 
-5. Coding Standards - 10%
+---
 
-Adhered to Pascal Case for Classes & Methods, Camel Case for Parameters, and proper namespace structuring.
+## 📝 Coding Standards - **10%**
 
-Technology Stack
+### ✅ Naming Conventions
 
-Backend: .NET Core API
-
-Frontend: Angular/ReactJS
-
-Database: SQL Server (bacpac file provided for setup)
-
-Installation & Setup
-
-Backend Setup
-
-Install .NET Core SDK.
-
-Clone the repository:
-
-git clone https://github.com/ISHITA1710/Assignment-Director-Management-DotNet.git
-
-Navigate to the backend folder and run:
-
-dotnet restore
-dotnet build
-dotnet run
-
-Import the provided bacpac file in SQL Server Management Studio:
-
-Open SSMS
-
-Right-click Databases → Import Data-tier Application
-
-Select the provided bacpac file and follow the wizard.
-
-Frontend Setup (Angular/ReactJS)
-
-Navigate to the frontend folder:
-
-cd Frontend
-
-Install dependencies:
-
-npm install
-
-Start the frontend:
-
-npm start
-
-Folder Structure
-
-root/
-│-- Backend/       # .NET Core API
-│-- Frontend/      # Angular/ReactJS frontend
-│-- README.md      # Project documentation
-│-- .gitignore     # Excluding unnecessary files (e.g., node_modules)
-
-Challenges & Solutions
-
-Handling large data efficiently: Implemented server-side pagination to improve performance.
-
-Validations: Used real-time validation in forms to enhance user experience.
-
-Sorting & Search Optimization: Applied indexing in SQL to enhance query performance.
-
-Contribution Guidelines
-
-Fork the repository.
-
-Create a feature branch:
-
-git checkout -b feature-new
-
-Commit changes:
-
-git commit -m "Added new feature"
-
-Push changes and create a Pull Request.
-
-License
-
-This project is open-source under the MIT License.
-
-Contact
-
-For any queries, contact [Your Email].
-
+#### **Namespaces**
+- **Format:** `ProjectName.ModuleName`
+- **Example:**
+  ```csharp
+  namespace AcmeInc.Data
