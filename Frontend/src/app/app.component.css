@@ -1,0 +1,82 @@
+/* business-form.component.css */
+
+.form-container {
+    max-width: 600px; /* Set a maximum width for the form */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding around the form */
+    border: 1px solid #e0e0e0; /* Light border around the form */
+    border-radius: 8px; /* Round the corners of the border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    background-color: #ffffff; /* White background color */
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.form-container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #333; /* Dark color for the heading */
+    font-family: 'Arial', sans-serif; /* Font family for the heading */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: bold; /* Make labels bold */
+    color: #555; /* Darker color for labels */
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Border for inputs */
+    border-radius: 4px; /* Round corners of inputs */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    font-size: 16px; /* Font size for inputs */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.error {
+    color: red; /* Red color for error messages */
+    font-size: 0.9em; /* Slightly smaller font size for error messages */
+    margin-top: 5px; /* Space above error messages */
+}
+
+.btn {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color for button */
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Round corners of button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 1em; /* Font size for button */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    width: 100%; /* Full width for button */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn:disabled {
+    background-color: #ccc; /* Gray color for disabled button */
+    cursor: not-allowed; /* Change cursor to not-allowed for disabled button */
+}

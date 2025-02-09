@@ -1,0 +1,72 @@
+<div class="form-container">
+  <h2>Add New Business</h2>
+  <form [formGroup]="businessForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Business Name (required)</label>
+      <input id="name" formControlName="name" type="text" class="form-control" />
+      <div *ngIf="businessForm.get('name')?.invalid && (businessForm.get('name')?.touched || businessForm.get('name')?.dirty)" class="error">
+        Business Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" formControlName="category" class="form-control">
+        <option value="">Select a category</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <div *ngIf="businessForm.get('category')?.invalid && (businessForm.get('category')?.touched || businessForm.get('category')?.dirty)" class="error">
+        Category is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress">Street Address (required)</label>
+      <textarea id="streetAddress" formControlName="streetAddress" class="form-control"></textarea>
+      <div *ngIf="businessForm.get('streetAddress')?.invalid && (businessForm.get('streetAddress')?.touched || businessForm.get('streetAddress')?.dirty)" class="error">
+        Street Address is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input id="city" formControlName="city" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input id="state" formControlName="state" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input id="zipCode" formControlName="zipCode" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number (required)</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" class="form-control" />
+      <div *ngIf="businessForm.get('phoneNumber')?.invalid && (businessForm.get('phoneNumber')?.touched || businessForm.get('phoneNumber')?.dirty)" class="error">
+        Phone Number is required and must be 10 digits.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="website">Website (optional)</label>
+      <input id="website" formControlName="website" type="text" class="form-control" />
+      <div *ngIf="businessForm.get('website')?.invalid && (businessForm.get('website')?.touched || businessForm.get('website')?.dirty)" class="error">
+        Please enter a valid URL.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input id="rating" formControlName="rating" type="number" class="form-control" min="1" max="5" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="businessForm.invalid">Save</button>
+
+  </form>
+
+</div>
+
