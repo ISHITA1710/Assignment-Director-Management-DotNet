@@ -22,3 +22,8 @@ cd Directory-Management
 1. Navigate to the Frontend folder:   cd Frontend
 2. Install dependencies:              npm install
 3. Run the application:               npm start
+
+---
+
+## 🎥 Demo Video
+[![Watch the demo](https://img.youtube.com/vi/t1dbD5hOzJo/0.jpg)](https://www.youtube.com/watch?v=t1dbD5hOzJo)
