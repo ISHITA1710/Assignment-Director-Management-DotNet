@@ -86,10 +86,17 @@ Admins should be able to manage business listings with the following features:
 
 ## 📝 Coding Standards - **10%**
 
-### ✅ Naming Conventions
 
-#### **Namespaces**
-- **Format:** `ProjectName.ModuleName`
-- **Example:**
-  ```csharp
-  namespace AcmeInc.Data
+---------------------------------------------------------------------------------------------
+
+# 📂 Directory Management System
+
+---
+
+## 🚀 How to Run the Project Locally
+
+### 📌 Clone the repository:
+```sh
+git clone https://github.com/YOUR_GITHUB_USERNAME/Directory-Management.git
+cd Directory-Management
+
