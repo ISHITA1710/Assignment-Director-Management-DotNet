@@ -17,9 +17,6 @@ cd Directory-Management
 
 ## Frontend Setup:
 ```sh
-1. Navigate to the Frontend folder:
-cd Frontend
-2. Install dependencies:
-npm install
-3. Run the application:
-npm start
+1. Navigate to the Frontend folder:   cd Frontend
+2. Install dependencies:              npm install
+3. Run the application:               npm start
