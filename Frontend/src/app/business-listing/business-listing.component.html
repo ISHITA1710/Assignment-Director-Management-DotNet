@@ -1,11 +1,11 @@
 <div class="business-listing-container">
   <h2>Business Listings</h2>
-  
+
   <!-- Search Bar -->
   <input type="text" [(ngModel)]="searchTerm" placeholder="Search businesses..." class="form-control mb-3">
 
   <a routerLink="/add-business" class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add New Business</a>
-  
+
   <table class="table">
     <thead>
       <tr>
@@ -26,7 +26,11 @@
         <td>{{ business.streetAddress }}</td>
         <td>{{ business.state }} / {{ business.zipCode }}</td>
         <td>{{ business.phoneNumber }}</td>
-        <td><a [href]="business.website" target="_blank">{{ business.website }}</a></td>
+        <td>
+          <a *ngIf="business.website" [href]="business.website" target="_blank">
+            {{ business.website }}
+          </a>
+        </td>
         <td>{{ business.rating }}</td>
         <td>
           <button (click)="editBusiness(business)" class="btn btn-warning">Edit</button>
@@ -37,6 +41,4 @@
   </table>
 </div>
 
-
-<!-- ✅ Keep <router-outlet> ONLY if needed -->
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>

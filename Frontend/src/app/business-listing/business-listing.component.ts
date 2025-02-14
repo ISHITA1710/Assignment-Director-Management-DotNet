@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink,RouterOutlet } from '@angular/router';
-
-
-
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BusinessService } from '../business-service.service';
 
 interface Business {
+  id?: number;
   name: string;
   category: string;
   streetAddress: string;
@@ -21,21 +21,36 @@ interface Business {
 @Component({
   selector: 'app-business-listing',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,FormsModule], // Add CommonModule here
+  imports: [CommonModule, RouterLink, RouterOutlet, FormsModule],
   templateUrl: './business-listing.component.html',
   styleUrls: ['./business-listing.component.css']
 })
-export class BusinessListingComponent {
+export class BusinessListingComponent implements OnInit {
   searchTerm: string = '';
-  businesses: Business[] = [
-    // Add more businesses as needed
-  ];
+  businesses: Business[] = [];
 
-  filteredBusinesses() {
+  constructor(private businessService: BusinessService) {}
+
+  ngOnInit() {
+    this.loadBusinesses(); // ✅ Fetch businesses on component load
+  }
+
+  loadBusinesses() {
+    this.businessService.getBusinesses().subscribe(
+      (data) => {
+        this.businesses = data;
+        this.businesses.sort((a, b) => a.name.localeCompare(b.name));
+      },
+      (error) => {
+        console.error('Error fetching businesses', error);
+      }
+    );
+  }
+
+  filteredBusinesses(): Business[] {
     if (!this.searchTerm) {
       return this.businesses;
     }
-
     const searchLower = this.searchTerm.toLowerCase();
     return this.businesses.filter(business =>
       business.name.toLowerCase().includes(searchLower) ||
@@ -47,18 +62,21 @@ export class BusinessListingComponent {
     );
   }
 
-  constructor() {
-    this.businesses.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-
   editBusiness(business: Business): void {
     console.log('Edit business:', business);
     // Implement edit functionality here
   }
 
   deleteBusiness(business: Business): void {
-    console.log('Delete business:', business);
-    this.businesses = this.businesses.filter(b => b !== business);
+    if (confirm(`Are you sure you want to delete ${business.name}?`)) {
+      this.businessService.deleteBusiness(business.id!).subscribe(
+        () => {
+          this.businesses = this.businesses.filter(b => b.id !== business.id);
+        },
+        (error) => {
+          console.error('Error deleting business', error);
+        }
+      );
+    }
   }
 }
