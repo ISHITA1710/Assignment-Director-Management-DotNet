@@ -1,44 +1,46 @@
+<!-- business-listing.component.html -->
 <div class="business-listing-container">
   <h2>Business Listings</h2>
 
-  <!-- Search Bar -->
-  <input type="text" [(ngModel)]="searchTerm" placeholder="Search businesses..." class="form-control mb-3">
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterBusinesses()"
+      placeholder="Search for a business..."
+      class="search-input"
+    />
+  </div>
 
-  <a routerLink="/add-business" class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add New Business</a>
-
+  <button (click)="onAddBusinessClick()" class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add New Business</button>
   <table class="table">
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Street Address</th>
-        <th>State/Zip</th>
-        <th>Contact Number</th>
-        <th>Website</th>
-        <th>Rating</th>
-        <th>Actions</th>
-      </tr>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Street Address</th>
+      <th>State/Zip</th>
+      <th>Contact Number</th>
+      <th>Website</th>
+      <th>Rating</th>
+      <th>Actions</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let business of filteredBusinesses()">
-        <td>{{ business.name }}</td>
-        <td>{{ business.category }}</td>
-        <td>{{ business.streetAddress }}</td>
-        <td>{{ business.state }} / {{ business.zipCode }}</td>
-        <td>{{ business.phoneNumber }}</td>
-        <td>
-          <a *ngIf="business.website" [href]="business.website" target="_blank">
-            {{ business.website }}
-          </a>
-        </td>
-        <td>{{ business.rating }}</td>
-        <td>
-          <button (click)="editBusiness(business)" class="btn btn-warning">Edit</button>
-          <button (click)="deleteBusiness(business)" class="btn btn-danger">Delete</button>
-        </td>
-      </tr>
+    <tr *ngFor="let business of filteredBusinesses">
+      <td>{{ business.name }}</td>
+      <td>{{ business.category }}</td>
+      <td>{{ business.streetAddress }}</td>
+      <td>{{ business.state }} / {{ business.zipCode }}</td>
+      <td>{{ business.phoneNumber }}</td>
+      <td><a [href]="business.website" target="_blank">{{ business.website }}</a></td>
+      <td>{{ business.rating }}</td>
+      <td>
+        <button (click)="editBusiness(business)" class="btn btn-warning">Edit</button>
+        <button (click)="deleteBusiness(business)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
 
-<router-outlet></router-outlet>

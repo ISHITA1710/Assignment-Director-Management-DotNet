@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { RouterLink,RouterOutlet } from '@angular/router';
+import { AddBusinessComponent } from '../add-business/add-business.component';
+import { Router } from '@angular/router'
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
-import { BusinessService } from '../business-service.service';
+
+
 
 interface Business {
-  id?: number;
   name: string;
   category: string;
   streetAddress: string;
@@ -21,46 +22,95 @@ interface Business {
 @Component({
   selector: 'app-business-listing',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterOutlet, FormsModule],
+  imports: [CommonModule,FormsModule], // Add CommonModule here
   templateUrl: './business-listing.component.html',
   styleUrls: ['./business-listing.component.css']
 })
-export class BusinessListingComponent implements OnInit {
-  searchTerm: string = '';
-  businesses: Business[] = [];
+export class BusinessListingComponent {
+  businesses: Business[] = [
+    {
+      name: 'ABC Bistro',
+      category: '4',
+      streetAddress: '123 Main St, Suite 1',
+      city: 'Los Angeles',
+      state: 'California',
+      zipCode: '900101',
+      phoneNumber: '6000000001',
+      website: 'http://abcb.com',
+      rating: 4.50
+    },
+    {
+      name: 'Tech World',
+      category: '2',
+      streetAddress: '456 Elm St',
+      city: 'San Francisco',
+      state: 'California',
+      zipCode: '941101',
+      phoneNumber: '7000000002',
+      website: 'http://techworld.com',
+      rating: 4.20
+    },
+    {
+      name: 'Health Plus',
+      category: '3',
+      streetAddress: '789 Oak St',
+      city: 'Seattle',
+      state: 'Washington',
+      zipCode: '981101',
+      phoneNumber: '8000000003',
+      website: 'http://healthplus.com',
+      rating: 4.80
+    },
+    {
+      name: 'Elite Tutors',
+      category: '3',
+      streetAddress: '321 Maple Ave',
+      city: 'Austin',
+      state: 'Texas',
+      zipCode: '733101',
+      phoneNumber: '9000000004',
+      website: 'http://elitetutors.com',
+      rating: 4.30
+    },
+    {
+      name: '5 Hub',
+      category: '5',
+      streetAddress: '654 Pine St',
+      city: 'Denver',
+      state: 'Colorado',
+      zipCode: '801201',
+      phoneNumber: '6000000005',
+      website: 'http://5hb.com',
+      rating: 4.60
+    },
+    
+    // Add more businesses as needed
+  ];
 
-  constructor(private businessService: BusinessService) {}
+   filteredBusinesses: Business[] = [];
+   searchTerm: string = '';
 
-  ngOnInit() {
-    this.loadBusinesses(); // ✅ Fetch businesses on component load
+  constructor(private router: Router) {
+//     this.businesses.sort((a, b) => a.name.localeCompare(b.name));
+    this.filteredBusinesses = this.businesses;
   }
 
-  loadBusinesses() {
-    this.businessService.getBusinesses().subscribe(
-      (data) => {
-        this.businesses = data;
-        this.businesses.sort((a, b) => a.name.localeCompare(b.name));
-      },
-      (error) => {
-        console.error('Error fetching businesses', error);
+  filterBusinesses(): void {
+      if (!this.searchTerm) {
+        this.filteredBusinesses = this.businesses; // Show all if search term is empty
+      } else {
+        this.filteredBusinesses = this.businesses.filter(business =>
+          business.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          business.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
       }
-    );
-  }
-
-  filteredBusinesses(): Business[] {
-    if (!this.searchTerm) {
-      return this.businesses;
     }
-    const searchLower = this.searchTerm.toLowerCase();
-    return this.businesses.filter(business =>
-      business.name.toLowerCase().includes(searchLower) ||
-      business.category.toLowerCase().includes(searchLower) ||
-      business.streetAddress.toLowerCase().includes(searchLower) ||
-      business.state.toLowerCase().includes(searchLower) ||
-      business.zipCode.includes(this.searchTerm) ||
-      business.phoneNumber.includes(this.searchTerm)
-    );
-  }
+
+  onAddBusinessClick() {
+  
+      this.router.navigateByUrl("/add-business")
+    }
+
 
   editBusiness(business: Business): void {
     console.log('Edit business:', business);
@@ -68,15 +118,7 @@ export class BusinessListingComponent implements OnInit {
   }
 
   deleteBusiness(business: Business): void {
-    if (confirm(`Are you sure you want to delete ${business.name}?`)) {
-      this.businessService.deleteBusiness(business.id!).subscribe(
-        () => {
-          this.businesses = this.businesses.filter(b => b.id !== business.id);
-        },
-        (error) => {
-          console.error('Error deleting business', error);
-        }
-      );
-    }
+    console.log('Delete business:', business);
+    this.businesses = this.businesses.filter(b => b !== business);
   }
 }
